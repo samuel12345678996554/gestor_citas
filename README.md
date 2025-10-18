@@ -20,11 +20,11 @@ Navegador web: Google Chrome, Edge o Firefox
 Estructura del sistema
 Aplicación                      	Descripción
 cuentas	                        Maneja la autenticación y roles de usuario.
-especialidades          	Define las áreas médicas disponibles.
+especialidades          	    Define las áreas médicas disponibles.
 médicos	                        Registra los datos de los médicos y sus especialidades.
-pacientes	                Almacena los datos personales y médicos de los pacientes.
+pacientes	                    Almacena los datos personales y médicos de los pacientes.
 citas	                        Permite agendar, modificar y cancelar citas médicas.
-historial_médico	        Guarda diagnósticos, observaciones y tratamientos posteriores a la cita.
+historial_médico	            Guarda diagnósticos, observaciones y tratamientos posteriores a la cita.
 
 
 Relaciones entre entidades
@@ -39,7 +39,7 @@ Cada historial médico se asocia a una cita.
 
  Capturas del sistema
 
- 🔐 Pantalla de inicio de sesión
+  Pantalla de inicio de sesión
 ![Inicio de sesión](imagenes/incio.png)
 
  Panel principal del administrador
@@ -63,28 +63,24 @@ Cada historial médico se asocia a una cita.
  Gestión de usuarios del sistema
 ![Usuarios](imagenes/usuario.png)
 
-Casos de uso principales
+Casos de uso 
+
 Administrador:
-
 Registra médicos, pacientes y especialidades.
-
 Agenda, modifica o elimina citas médicas.
-
 Supervisa historiales médicos.
 
  Médico:
-
 Visualiza sus citas programadas.
-
 Registra diagnósticos, observaciones y tratamientos.
 
  Paciente:
-
 Revisa sus citas y diagnósticos médicos.
-
 Mantiene actualizada su información personal.
 
-Autores
 
+
+
+Autores
 Samuel Prada 
 Jafet Sardo
