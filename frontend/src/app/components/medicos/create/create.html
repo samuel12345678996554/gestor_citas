@@ -1,0 +1,54 @@
+<div class="container">
+
+  <h2 class="title">Registrar Médico</h2>
+
+  <form [formGroup]="form" class="form-grid">
+
+    <!-- Nombre -->
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre">
+      <mat-error>{{ getFieldError('nombre') }}</mat-error>
+    </mat-form-field>
+
+    <!-- Apellido -->
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido">
+      <mat-error>{{ getFieldError('apellido') }}</mat-error>
+    </mat-form-field>
+
+    <!-- Especialidad -->
+    <mat-form-field appearance="outline">
+      <mat-label>Especialidad</mat-label>
+      <mat-select formControlName="especialidad">
+        <mat-option *ngFor="let esp of especialidades" [value]="esp.id">
+          {{ esp.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-error>{{ getFieldError('especialidad') }}</mat-error>
+    </mat-form-field>
+
+    <!-- Teléfono -->
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="telefono">
+      <mat-error>{{ getFieldError('telefono') }}</mat-error>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-error>{{ getFieldError('email') }}</mat-error>
+    </mat-form-field>
+
+  </form>
+
+  <!-- BOTONES -->
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="submit()">Guardar</button>
+    <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+  </div>
+
+</div>

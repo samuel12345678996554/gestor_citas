@@ -1,0 +1,42 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Editar Especialidad</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="flex flex-col">
+        <label class="block mb-2 font-semibold text-gray-700">Nombre *</label>
+        <input 
+          pInputText
+          formControlName="nombre"
+          class="w-full"
+          [class.ng-invalid]="form.get('nombre')?.invalid && form.get('nombre')?.touched"
+        />
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <div class="bg-gray-50 rounded-lg p-4 flex gap-4 items-center">
+          <button
+            type="submit"
+            class="p-button p-component p-button-success flex items-center gap-2"
+            [disabled]="loading"
+          >
+            <i class="pi pi-save"></i>
+            Guardar
+          </button>
+
+          <button
+            pButton
+            type="button"
+            class="p-button p-button-secondary"
+            label="Cancelar"
+            icon="pi pi-times"
+            (click)="cancelar()"
+            [disabled]="loading"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<p-toast></p-toast>

@@ -1,0 +1,67 @@
+<div class="max-w-4xl mx-auto p-6">
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Editar Paciente</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!loading">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Nombre *</label>
+          <input pInputText formControlName="nombre" class="w-full"
+            [class.ng-invalid]="form.get('nombre')?.invalid && form.get('nombre')?.touched" />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('nombre')">{{ getFieldError('nombre') }}</small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Apellido *</label>
+          <input pInputText formControlName="apellido" class="w-full"
+            [class.ng-invalid]="form.get('apellido')?.invalid && form.get('apellido')?.touched" />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('apellido')">{{ getFieldError('apellido') }}</small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Cédula *</label>
+          <input pInputText formControlName="cedula" class="w-full"
+            [class.ng-invalid]="form.get('cedula')?.invalid && form.get('cedula')?.touched" />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('cedula')">{{ getFieldError('cedula') }}</small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Teléfono *</label>
+          <input pInputText formControlName="telefono" class="w-full"
+            placeholder="1234567890"
+            [class.ng-invalid]="form.get('telefono')?.invalid && form.get('telefono')?.touched" />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('telefono')">{{ getFieldError('telefono') }}</small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Dirección *</label>
+          <input pInputText formControlName="direccion" class="w-full"
+            [class.ng-invalid]="form.get('direccion')?.invalid && form.get('direccion')?.touched" />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('direccion')">{{ getFieldError('direccion') }}</small>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block mb-2 font-semibold text-gray-700">Email *</label>
+          <input pInputText type="email" formControlName="email" class="w-full"
+            [class.ng-invalid]="form.get('email')?.invalid && form.get('email')?.touched" />
+          <small class="text-red-500 mt-1" *ngIf="getFieldError('email')">{{ getFieldError('email') }}</small>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <div class="bg-gray-50 rounded-lg p-4 flex gap-4 items-center">
+          <button pButton type="submit" class="p-button bg-blue-500 hover:bg-blue-600 text-white"
+            label="Actualizar" icon="pi pi-save" [loading]="loading" [disabled]="loading"></button>
+          <button pButton type="button" class="p-button p-button-secondary"
+            label="Cancelar" icon="pi pi-times" (click)="cancelar()" [disabled]="loading"></button>
+        </div>
+      </div>
+    </form>
+
+    <div class="flex justify-center" *ngIf="loading">
+      <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>

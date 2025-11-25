@@ -1,0 +1,30 @@
+.container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 25px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Email ocupa toda la fila */
+.full-width {
+  grid-column: span 2;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}

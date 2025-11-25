@@ -1,0 +1,98 @@
+<div class="card p-8">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-2xl font-bold">Gestión de Historial Médico</h2>
+
+    <p-button
+      label="Nuevo Historial"
+      icon="pi pi-plus"
+      [routerLink]="['/historial_medico/create']"
+      styleClass="p-button-success"
+    ></p-button>
+  </div>
+
+  <p-table 
+      [value]="historiales" 
+      [loading]="loading"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [rowsPerPageOptions]="[5, 10, 25, 50]"
+      dataKey="id"
+      styleClass="p-datatable-striped"
+      [tableStyle]="{'min-width': '60rem'}"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="pacienteNombre">
+          Paciente <p-sortIcon field="pacienteNombre"></p-sortIcon>
+        </th>
+
+        <th pSortableColumn="fecha">
+          Fecha <p-sortIcon field="fecha"></p-sortIcon>
+        </th>
+
+        <th pSortableColumn="diagnostico">
+          Diagnóstico <p-sortIcon field="diagnostico"></p-sortIcon>
+        </th>
+
+        <th class="text-center">Acciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-h>
+      <tr>
+        <td>{{ h.pacienteNombre }}</td>
+        <td>{{ h.fecha }}</td>
+        <td>{{ h.diagnostico }}</td>
+
+        <td class="text-center">
+          <div class="flex justify-center gap-2">
+
+            <!-- BOTÓN EDITAR -->
+            <p-button
+              icon="pi pi-pencil"
+              [routerLink]="['/historial_medico/update', h.id]"
+              styleClass="p-button-rounded p-button-text p-button-warning"
+              pTooltip="Editar"
+              tooltipPosition="top"
+            ></p-button>
+
+            <!-- BOTÓN ELIMINAR -->
+            <p-button
+              icon="pi pi-trash"
+              (onClick)="confirmDelete(h)"
+              styleClass="p-button-rounded p-button-text p-button-danger"
+              pTooltip="Eliminar"
+              tooltipPosition="top"
+            ></p-button>
+
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4" class="text-center p-4">
+          <div class="flex flex-col items-center gap-3">
+            <i class="pi pi-info-circle text-4xl text-gray-400"></i>
+            <span class="text-gray-500">No se encontraron historiales médicos</span>
+
+            <p-button
+              label="Crear Primer Historial"
+              icon="pi pi-plus"
+              [routerLink]="['/historial_medico/create']"
+              styleClass="p-button-sm p-button-outlined"
+            ></p-button>
+
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+</div>
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

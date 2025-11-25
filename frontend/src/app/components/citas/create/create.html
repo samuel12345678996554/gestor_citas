@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <h2>Crear Cita</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- FECHA -->
+    <div class="mb-3">
+      <label class="form-label">Fecha</label>
+      <input type="date" class="form-control" formControlName="fecha" />
+      <div *ngIf="form.get('fecha')?.invalid && form.get('fecha')?.touched" class="text-danger">
+        La fecha es obligatoria.
+      </div>
+    </div>
+
+    <!-- HORA -->
+    <div class="mb-3">
+      <label class="form-label">Hora inicio</label>
+      <input type="time" class="form-control" formControlName="hora_inicio" />
+      <div *ngIf="form.get('hora_inicio')?.invalid && form.get('hora_inicio')?.touched" class="text-danger">
+        La hora es obligatoria.
+      </div>
+    </div>
+
+    <!-- PACIENTE -->
+    <div class="mb-3">
+      <label class="form-label">Paciente</label>
+      <select class="form-select" formControlName="paciente">
+        <option value="">Seleccione un paciente</option>
+        <option *ngFor="let p of pacientes" [value]="p.id">
+          {{ p.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <!-- MEDICO -->
+    <div class="mb-3">
+      <label class="form-label">Médico</label>
+      <select class="form-select" formControlName="medico">
+        <option value="">Seleccione un médico</option>
+        <option *ngFor="let m of medicos" [value]="m.id">
+          {{ m.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <!-- ESTADO -->
+    <div class="mb-3">
+      <label class="form-label">Estado de la cita</label>
+      <select class="form-select" formControlName="estado_cita">
+        <option value="Programada">Programada</option>
+        <option value="Cancelada">Cancelada</option>
+        <option value="Finalizada">Finalizada</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+      Guardar
+    </button>
+  </form>
+</div>

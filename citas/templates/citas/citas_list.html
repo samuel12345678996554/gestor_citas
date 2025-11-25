@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Lista de Citas</h2>
+
+    <a href="{% url 'citas:crear' %}" class="btn btn-primary mb-3">Crear Cita</a>
+
+    <!-- Mensaje de prueba para verificar si hay citas -->
+    <p>Prueba: hay {{ citas|length }} citas cargadas</p>
+
+    {% if citas %}
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Paciente</th>
+                <th>Médico</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Motivo</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for cita in citas %}
+            <tr>
+                <td>{{ cita.paciente }}</td>
+                <td>{{ cita.medico }}</td>
+                <td>{{ cita.fecha }}</td>
+                <td>{{ cita.hora }}</td>
+                <td>{{ cita.motivo|truncatewords:6 }}</td>
+                <td>
+                    <a href="{% url 'citas:detalle' cita.pk %}" class="btn btn-info btn-sm">Ver</a>
+                    <a href="{% url 'citas:editar' cita.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'citas:eliminar' cita.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No hay citas registradas.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

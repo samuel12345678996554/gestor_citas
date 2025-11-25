@@ -1,0 +1,28 @@
+<div class="card p-6 max-w-md mx-auto">
+  <h2 class="text-2xl font-bold mb-4">Editar Médico</h2>
+
+  <div class="field mb-3">
+    <label for="nombre" class="block font-semibold mb-1">Nombre</label>
+    <input id="nombre" type="text" pInputText [(ngModel)]="medico.nombre" />
+  </div>
+
+  <div class="field mb-3">
+    <label for="especialidad" class="block font-semibold mb-1">Especialidad</label>
+    <input id="especialidad" type="text" pInputText [(ngModel)]="medico.especialidad" />
+  </div>
+
+  <div class="field mb-3">
+    <label for="email" class="block font-semibold mb-1">Email</label>
+    <input id="email" type="email" pInputText [(ngModel)]="medico.email" />
+  </div>
+
+  <div class="field mb-3">
+    <label for="telefono" class="block font-semibold mb-1">Teléfono</label>
+    <input id="telefono" type="text" pInputText [(ngModel)]="medico.telefono" />
+  </div>
+
+  <div class="flex gap-2 mt-4">
+    <p-button label="Actualizar" icon="pi pi-save" (onClick)="update()" styleClass="p-button-success"></p-button>
+    <p-button label="Cancelar" icon="pi pi-times" [routerLink]="['/medicos']" styleClass="p-button-secondary"></p-button>
+  </div>
+</div>

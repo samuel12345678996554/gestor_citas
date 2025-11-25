@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Detalle del Médico</h2>
+
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Nombre:</strong> {{ medico.nombre }} {{ medico.apellido }}</li>
+        <li class="list-group-item"><strong>Especialidad:</strong> {{ medico.especialidad }}</li>
+        <li class="list-group-item"><strong>Teléfono:</strong> {{ medico.telefono }}</li>
+        <li class="list-group-item"><strong>Email:</strong> {{ medico.email }}</li>
+    </ul>
+
+    <a href="{% url 'medicos:lista' %}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+
+{% endblock %}

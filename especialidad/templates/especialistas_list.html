@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Lista de Especialidades</h1>
+<a href="{% url 'especialidad:crear' %}">Crear nueva especialidad</a>
+<ul>
+    {% for especialidad in especialidades %}
+        <li>
+            <a href="{% url 'especialidad:detalle' especialidad.id %}">
+                {{ especialidad.nombre }}
+            </a>
+            - <a href="{% url 'especialidad:editar' especialidad.id %}">Editar</a>
+            - <a href="{% url 'especialidad:eliminar' especialidad.id %}">Eliminar</a>
+        </li>
+    {% empty %}
+        <li>No hay especialidades registradas.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

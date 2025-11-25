@@ -11,16 +11,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9^e!^p9ct^+a_xx0ca+s^lwa!#)&4bc7$7+8m39wm5s5-ts$%7'
+SECRET_KEY = 'django-insecure-reemplaza-esto-en-produccion'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,11 +25,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
-
+# ============================
+#       INSTALLED APPS
+# ============================
 INSTALLED_APPS = [
-    # Aplicaciones internas de Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,17 +36,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Aplicaciones del proyecto (en español)
-    'cuentas',
-    'especialidades',
-    'medicos',
+    # Third party apps
+    'rest_framework',  # ✅ Agregar si usas Django REST Framework
+    'corsheaders',     # ✅ Agregar esto
+
+    # Apps del proyecto
     'pacientes',
+    'medicos',
+    'especialidad',
     'citas',
     'historial_medico',
 ]
 
+
+# ============================
+#       MIDDLEWARE
+# ============================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # ✅ Agregar esto (debe estar arriba)
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -59,15 +63,24 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+# ============================
+#       URL CONFIG
+# ============================
 ROOT_URLCONF = 'gestor_citas.urls'
 
+
+# ============================
+#       TEMPLATES
+# ============================
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],   # <– IMPORTANTE
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -76,12 +89,16 @@ TEMPLATES = [
     },
 ]
 
+
+# ============================
+#       WSGI
+# ============================
 WSGI_APPLICATION = 'gestor_citas.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+# ============================
+#       DATABASE
+# ============================
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -90,9 +107,9 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
+# ============================
+#   PASSWORD VALIDATION
+# ============================
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -109,24 +126,50 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+# ============================
+#       INTERNATIONALIZATION
+# ============================
+LANGUAGE_CODE = 'es-es'
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
-
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# ============================
+#   STATIC FILES (CSS, JS)
+# ============================
+STATIC_URL = '/static/'
 
-STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
+# ============================
+#  LOGIN / LOGOUT SETTINGS
+# ============================
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGIN_URL = '/accounts/login/'
+
+
+# ============================
+#       DEFAULT PRIMARY KEY
+# ============================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ============================
+#       CORS CONFIGURATION
+# ============================
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+]
+
+# Opcional para desarrollo (permite cookies y credenciales)
+CORS_ALLOW_CREDENTIALS = True

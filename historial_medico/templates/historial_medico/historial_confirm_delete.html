@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="alert alert-danger">
+        <h4>¿Estás seguro de eliminar este registro?</h4>
+        <p><strong>Paciente:</strong> {{ historial.paciente }}</p>
+        <p><strong>Fecha:</strong> {{ historial.fecha }}</p>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'historial_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="historial-form">
+
+  <!-- Paciente -->
+  <mat-form-field appearance="fill">
+    <mat-label>Paciente</mat-label>
+    <mat-select formControlName="paciente">
+      <mat-option *ngFor="let p of pacientes" [value]="p.id">
+        {{ p.nombre }} {{ p.apellido }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Médico -->
+  <mat-form-field appearance="fill">
+    <mat-label>Médico</mat-label>
+    <mat-select formControlName="medico">
+      <mat-option *ngFor="let m of medicos" [value]="m.id">
+        Dr. {{ m.nombre }} {{ m.apellido }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Fecha -->
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha</mat-label>
+    <input matInput type="date" formControlName="fecha">
+  </mat-form-field>
+
+  <!-- Diagnóstico -->
+  <mat-form-field appearance="fill">
+    <mat-label>Diagnóstico</mat-label>
+    <input matInput formControlName="diagnostico">
+  </mat-form-field>
+
+  <!-- Tratamiento -->
+  <mat-form-field appearance="fill">
+    <mat-label>Tratamiento</mat-label>
+    <input matInput formControlName="tratamiento">
+  </mat-form-field>
+
+  <!-- Observaciones -->
+  <mat-form-field appearance="fill">
+  <mat-label>Descripción</mat-label>
+  <textarea matInput formControlName="descripcion"></textarea>
+</mat-form-field>
+
+
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="loading">Actualizar</button>
+    <button mat-raised-button color="warn" type="button" (click)="cancelar()">Cancelar</button>
+  </div>
+</form>

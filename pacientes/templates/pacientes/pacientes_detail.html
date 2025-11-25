@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Detalle del Paciente</h2>
+
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Nombre:</strong> {{ paciente.nombre }} {{ paciente.apellido }}</li>
+        <li class="list-group-item"><strong>Cédula:</strong> {{ paciente.cedula }}</li>
+        <li class="list-group-item"><strong>Teléfono:</strong> {{ paciente.telefono }}</li>
+        <li class="list-group-item"><strong>Email:</strong> {{ paciente.email }}</li>
+        <li class="list-group-item"><strong>Dirección:</strong> {{ paciente.direccion }}</li>
+    </ul>
+
+    <a href="{% url 'pacientes:lista' %}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+
+{% endblock %}

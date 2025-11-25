@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <h2>Editar Cita</h2>
+
+  <form [formGroup]="form" (ngSubmit)="update()">
+
+    <!-- FECHA -->
+    <div class="mb-3">
+      <label class="form-label">Fecha</label>
+      <input type="date" class="form-control" formControlName="fecha" />
+    </div>
+
+    <!-- HORA -->
+    <div class="mb-3">
+      <label class="form-label">Hora inicio</label>
+      <input type="time" class="form-control" formControlName="hora_inicio" />
+    </div>
+
+    <!-- PACIENTE -->
+    <div class="mb-3">
+      <label class="form-label">Paciente</label>
+      <select class="form-select" formControlName="paciente">
+        <option *ngFor="let p of pacientes" [value]="p.id">
+          {{ p.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <!-- MÉDICO -->
+    <div class="mb-3">
+      <label class="form-label">Médico</label>
+      <select class="form-select" formControlName="medico">
+        <option *ngFor="let m of medicos" [value]="m.id">
+          {{ m.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <!-- ESTADO -->
+    <div class="mb-3">
+      <label class="form-label">Estado de la cita</label>
+      <select class="form-select" formControlName="estado_cita">
+        <option value="Programada">Programada</option>
+        <option value="Cancelada">Cancelada</option>
+        <option value="Finalizada">Finalizada</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+      Actualizar
+    </button>
+  </form>
+</div>

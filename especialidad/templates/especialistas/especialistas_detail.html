@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Detalle de Especialidad</h1>
+<p>Nombre: {{ especialidad.nombre }}</p>
+<a href="{% url 'especialidad:editar' especialidad.id %}">Editar</a> |
+<a href="{% url 'especialidad:eliminar' especialidad.id %}">Eliminar</a> |
+<a href="{% url 'especialidad:lista' %}">Volver a la lista</a>
+{% endblock %}

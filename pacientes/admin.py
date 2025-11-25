@@ -3,5 +3,5 @@ from .models import Paciente
 
 @admin.register(Paciente)
 class PacienteAdmin(admin.ModelAdmin):
-    list_display = ('usuario', 'documento', 'telefono')
-    search_fields = ('usuario__first_name', 'usuario__last_name', 'documento')
+    list_display = ('nombre', 'apellido', 'cedula', 'telefono', 'direccion', 'email')
+    search_fields = ('nombre', 'apellido', 'cedula', 'email')

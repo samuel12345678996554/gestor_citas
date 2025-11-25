@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import HistorialMedico
+from .serializers import HistorialMedicoSerializer
 
-# Create your views here.
+class HistorialMedicoViewSet(viewsets.ModelViewSet):
+    queryset = HistorialMedico.objects.all()
+    serializer_class = HistorialMedicoSerializer

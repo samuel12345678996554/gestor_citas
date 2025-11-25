@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-3">Detalle del Historial Médico</h2>
+
+    <div class="card p-4 shadow">
+        <p><strong>Paciente:</strong> {{ historial.paciente }}</p>
+        <p><strong>Médico:</strong> {{ historial.medico }}</p>
+        <p><strong>Fecha:</strong> {{ historial.fecha }}</p>
+        <p><strong>Diagnóstico:</strong> {{ historial.diagnostico }}</p>
+        <p><strong>Descripción:</strong> {{ historial.descripcion }}</p>
+        <p><strong>Tratamiento:</strong> {{ historial.tratamiento }}</p>
+
+        <hr>
+
+        <a href="{% url 'historial_update' historial.id %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'historial_delete' historial.id %}" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'historial_list' %}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+
+{% endblock %}

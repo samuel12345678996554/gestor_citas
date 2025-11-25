@@ -1,0 +1,10 @@
+.card {
+    padding: 1.5rem;
+    background: var(--surface-card);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+th {
+    font-weight: 600;
+}

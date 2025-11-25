@@ -1,0 +1,68 @@
+<p-toast></p-toast>
+
+<div class="container">
+
+  <p-card header="Listado de Citas">
+
+    <div class="toolbar">
+      <input
+        type="text"
+        pInputText
+        placeholder="Buscar..."
+        [(ngModel)]="filtroGlobal"
+      />
+      <button pButton label="Nueva Cita" icon="pi pi-plus" routerLink="/citas/create"></button>
+    </div>
+
+    <p-table
+      [value]="citas"
+      [paginator]="true"
+      [rows]="10"
+      [loading]="loading"
+      [globalFilterFields]="['nombre','documento','estado']"
+      [filters]="{ global: { value: filtroGlobal, matchMode: 'contains' } }"
+      sortMode="multiple"
+    >
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="nombre">
+            Nombre
+            <p-sortIcon field="nombre"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="documento">
+            Documento
+            <p-sortIcon field="documento"></p-sortIcon>
+          </th>
+
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-row>
+        <tr>
+          <td>{{ row.nombre }}</td>
+          <td>{{ row.documento }}</td>
+
+          <td>
+            <p-tag
+              [value]="row.estado"
+              [severity]="row.estado === 'Activa' ? 'success' : 'danger'"
+            ></p-tag>
+          </td>
+
+          <td class="actions">
+            <button pButton icon="pi pi-pencil" styleClass="p-button-sm p-button-info" 
+                    [routerLink]="['/citas/update', row.id]"></button>
+
+            <button pButton icon="pi pi-trash" styleClass="p-button-sm p-button-danger"
+                    (click)="delete(row.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </p-card>
+</div>

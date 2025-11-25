@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Lista de Médicos</h2>
+
+    <a href="{% url 'medicos:crear' %}" class="btn btn-primary mb-3">Agregar Médico</a>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for medico in medicos %}
+            <tr>
+                <td>{{ medico.nombre }} {{ medico.apellido }}</td>
+                <td>{{ medico.especialidad }}</td>
+                <td>{{ medico.telefono }}</td>
+                <td>{{ medico.email }}</td>
+                <td>
+                    <a href="{% url 'medicos:detalle' medico.id %}" class="btn btn-info btn-sm">Ver</a>
+                    <a href="{% url 'medicos:editar' medico.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'medicos:eliminar' medico.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
